@@ -155,7 +155,7 @@ services:
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention=24h'
     environment:
-      - JOBS=mysqld-exporter:9104
+      - JOBS=mysqld-exporter:9104 caddy:42004
     volumes:
       - prometheus:/prometheus
     configs:
@@ -212,7 +212,7 @@ services:
     networks:
       - net
     environment:
-      - DATA_SOURCE_NAME=exporter:Am3r5hAm132@(172.16.11.48:3306)/
+      - DATA_SOURCE_NAME=exporter:Am3r5hAm132@(172.16.11.48:3307)/
     deploy:
       mode: replicated
       replicas: 1

@@ -38,3 +38,11 @@
     tls off
 }
 
+:42004 {
+    proxy / 172.16.11.48:42004 {
+            transparent
+        }
+
+    errors stderr
+    tls off
+}

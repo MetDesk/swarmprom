@@ -1,0 +1,10 @@
+[Unit]
+Description=proxysql exporter for prometheus metrics
+After=network.target
+
+[Service]
+ExecStart=/usr/sbin/proxysql_exporter
+Type=simple
+
+[Install]
+WantedBy=default.target
