@@ -154,6 +154,8 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention=24h'
+    environment:
+      - JOBS=mysqld-exporter:9104
     volumes:
       - prometheus:/prometheus
     configs:
@@ -204,3 +206,21 @@ services:
       interval: 5s
       timeout: 1s
       retries: 5
+
+  mysqld-exporter:
+    image: prom/mysqld-exporter
+    networks:
+      - net
+    environment:
+      - DATA_SOURCE_NAME=exporter:Am3r5hAm132@(172.16.11.48:3306)/
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M
